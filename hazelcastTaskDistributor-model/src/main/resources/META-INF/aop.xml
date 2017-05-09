@@ -1,0 +1,14 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+	<!-- <weaver options="-Xset:weaveJavaPackages=true,weaveJavaxPackages=true -verbose -debug -showWeaveInfo"> -->
+	<weaver options="-Xset:weaveJavaPackages=true,weaveJavaxPackages=true">
+		<!-- only weave classes in our application-specific packages -->
+		<include within="com.puigros.model.aspect.MetricsAspect" />
+		<include within="com.puigros.model.service.impl.*" />
+		<include within="com.puigros.web.controller.*" />
+	</weaver>
+	<aspects>
+		<!-- weave in just this aspect -->
+		<aspect name="com.puigros.model.aspect.MetricsAspect" />
+	</aspects>
+</aspectj>

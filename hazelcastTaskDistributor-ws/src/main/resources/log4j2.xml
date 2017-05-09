@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%-5p|%d{ISO8601}{GMT}|X-B3-TraceId (%X{X-B3-TraceId:-})|%c{1}|%m%ex%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="WARN">
+      <AppenderRef ref="Console" />
+    </Root>
+    <Logger name="com.puigros" level="TRACE" />
+    <Logger name="org.springframework" level="WARN" />
+  </Loggers>
+</Configuration>

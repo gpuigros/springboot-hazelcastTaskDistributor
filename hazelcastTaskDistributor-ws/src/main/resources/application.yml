@@ -1,0 +1,29 @@
+# THIS FILE SHOULD NOT BE EDITED
+# ALL APPLICATION CONFIGURATION MUST BE IN CONFIG SERVER
+# THIS FILE ONLY CONTAINS "STRUCTURAL" CONFIGURATION AND MUST NOT BE CHANGED
+
+info:
+  version: 1.0
+  title: hazelcastTaskDistributor
+server:
+  port: 8080
+
+# Swagger specification path
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+
+# Jackson serialization library: date serialization configuration
+jackson:
+  serialization:
+    write_dates_as_timestamps: false
+
+# PROFILE LOCAL  #
+---
+spring:
+  profiles: local
+
+logging:
+  config: classpath:log4j2.xml
