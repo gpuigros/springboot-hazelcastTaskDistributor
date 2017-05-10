@@ -72,10 +72,10 @@ public class SwaggerConfiguration {
     @Bean
     public ApiInfo metadata() {
         return new ApiInfoBuilder()
-            .title("PROJECT NAME")
-            .description("PROJECT DESCRIPTION")
+            .title("hazelcastTaskDistributor")
+            .description("hazelcastTaskDistributor shows how to distribute tasks with hazelcast")
             .version("1.0")
-            .contact(new Contact("Apollo Creed", "http://www.hotelbeds.com", "apollo@hotelbeds.com"))
+            //.contact(new Contact("Guillem", "http://www.puigros.com", "mail@mail.com"))
             .build();
     }
 
