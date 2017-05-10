@@ -30,8 +30,7 @@
 
     <name>hazelcastTaskDistributor</name>
     <modules>
-        <module>hazelcastTaskDistributor-entities</module>
-        <module>hazelcastTaskDistributor-model</module>
+
         <module>hazelcastTaskDistributor-ws</module>
     </modules>
 

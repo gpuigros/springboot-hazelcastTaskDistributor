@@ -2,7 +2,7 @@
 <Configuration status="WARN" monitorInterval="30">
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%-5p|%d{ISO8601}{GMT}|X-B3-TraceId (%X{X-B3-TraceId:-})|%c{1}|%m%ex%n" />
+      <PatternLayout pattern="%p|%d{ISO8601}{GMT}|%X{x-b3-traceid}|%X{httpsessionid}|%X{querystring}|%c|%t|%m%ex%n" />
     </Console>
   </Appenders>
   <Loggers>

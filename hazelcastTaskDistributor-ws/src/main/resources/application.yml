@@ -6,7 +6,7 @@ info:
   version: 1.0
   title: hazelcastTaskDistributor
 server:
-  port: 8080
+  port: 8081
 
 # Swagger specification path
 springfox:
@@ -27,3 +27,7 @@ spring:
 
 logging:
   config: classpath:log4j2.xml
+
+hazelcast:
+  port: 5701
+  baseGroupName: taskGroup
