@@ -3,7 +3,7 @@ package com.puigros.jobs;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IQueue;
 import com.puigros.logging.MDCInjector;
-import com.puigros.task.Task;
+import com.puigros.task.RunnableTask;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +36,14 @@ public class TasksConsumer implements Runnable {
         mDCInjector.setMDC();
         end=false;
         while (!end) {
-            IQueue<Task> queue = haz.getQueue("queue");
-            Task task = null;
+            IQueue<RunnableTask> queue = haz.getQueue("queue");
+            RunnableTask runnableTask = null;
             try {
-                task = queue.take();
+                runnableTask = queue.take();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            task.run();
+            runnableTask.run();
         }
     }
 }

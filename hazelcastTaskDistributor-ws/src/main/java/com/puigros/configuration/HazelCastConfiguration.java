@@ -71,31 +71,31 @@ public class HazelCastConfiguration implements ApplicationContextAware, Environm
         } else {
             NetworkConfig network = cfg.getNetworkConfig();
             JoinConfig join = network.getJoin();
-            join.getMulticastConfig().setEnabled(true);
+            //join.getMulticastConfig().setEnabled(true);
 
 //Uncoment for tcpIpConfig as for Consul or Eureka known hosts
 
-//            join.getMulticastConfig().setEnabled(false);
-//            join.getAwsConfig().setEnabled(false);
-//            log.info("Multicast disabled, joining cluster controlled by {}", clusterTop);
-//            String address = "";
-//            TcpIpConfig tcpIpConfig = join.getTcpIpConfig();
-//            tcpIpConfig.setEnabled(true);
-//            try {
-//                address = InetAddress.getLocalHost().getHostAddress();
-//                log.info("Using public address {}", address);
-//                network.setPublicAddress(address);
-//                network.getInterfaces().setEnabled(true).addInterface(address);
-//                tcpIpConfig.addMember(address);
-//            } catch (final Exception e) {
-//                log.error("Host address could not be resolved ", e);
-//            }
-//            if (StringUtils.isNotBlank(clusterTop)) {
-//                for (String member : clusterTop.split(",")) {
-//                    log.info("Connecting to {}:{}", member, port);
-//                    tcpIpConfig.addMember(member + ":" + port);
-//                }
-//            }
+            join.getMulticastConfig().setEnabled(false);
+            join.getAwsConfig().setEnabled(false);
+            log.info("Multicast disabled, joining cluster controlled by {}", clusterTop);
+            String address = "";
+            TcpIpConfig tcpIpConfig = join.getTcpIpConfig();
+            tcpIpConfig.setEnabled(true);
+            try {
+                address = InetAddress.getLocalHost().getHostAddress();
+                log.info("Using public address {}", address);
+                network.setPublicAddress(address);
+                network.getInterfaces().setEnabled(true).addInterface(address);
+                tcpIpConfig.addMember(address);
+            } catch (final Exception e) {
+                log.error("Host address could not be resolved ", e);
+            }
+            if (StringUtils.isNotBlank(clusterTop)) {
+                for (String member : clusterTop.split(",")) {
+                    log.info("Connecting to {}:{}", member, port);
+                    tcpIpConfig.addMember(member + ":" + port);
+                }
+            }
         }
         log.info("Hazelcast joining group {}", groupName);
         cfg.getNetworkConfig().setPort(port);

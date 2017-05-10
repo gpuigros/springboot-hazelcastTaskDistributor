@@ -2,6 +2,8 @@ package com.puigros.task;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -14,18 +16,19 @@ import org.springframework.stereotype.Component;
 @SpringAware
 @Component
 @Scope("prototype")
-public class Task implements Runnable, Serializable, HazelcastInstanceAware, ApplicationContextAware {
+@Log4j2
+public class RunnableTask implements Runnable, Serializable, HazelcastInstanceAware, ApplicationContextAware {
     private int taskId;
     private transient HazelcastInstance haz;
     private transient ApplicationContext appCtx;
 
-    public Task(int taskId) {
+    public RunnableTask(int taskId) {
         this.taskId = taskId;
     }
 
     @Override
     public void run() {
-        System.out.println("Ejecutado " + taskId + "(" + new Date() + ") on haz=" + haz + " and appCtx=" + appCtx);
+        log.info("Ejecutado " + taskId + "(" + new Date() + ") on haz=" + haz + " and appCtx=" + appCtx);
 
     }
 

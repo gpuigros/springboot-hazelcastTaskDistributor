@@ -1,5 +1,6 @@
 package com.puigros.service.impl;
 
+import com.puigros.jobs.DistributedExecutor;
 import com.puigros.jobs.TasksConsumer;
 import com.puigros.jobs.TasksCreator;
 import com.puigros.service.TaskDistributorService;
@@ -19,12 +20,14 @@ public class TaskDistributorServiceImpl implements TaskDistributorService {
 
     @Override
     public void runTasksCreation(int tasks){
-        TasksCreator tasksClass=context.getBean(TasksCreator.class, tasks);
-        executor.execute(tasksClass);
+        executor.execute(context.getBean(TasksCreator.class, tasks));
     }
     @Override
     public void runTasksConsumer(){
-        TasksConsumer tasksClass=context.getBean(TasksConsumer.class);
-        executor.execute(tasksClass);
+        executor.execute(context.getBean(TasksConsumer.class));
+    }
+    @Override
+    public void runDistributedExecutor(int tasks){
+        executor.execute(context.getBean(DistributedExecutor.class, tasks));
     }
 }

@@ -79,5 +79,30 @@ public class RestController {
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
 
     }
+    @ApiOperation(
+            tags = "Hazelcast",
+            value = "Distributed executor",
+            notes = "Distributed executor",
+            response = Boolean.class
+            //responseContainer = "List"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 204, message = "No Content"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 500, message = "Failure")
+    })
+    @RequestMapping(value = "/distributedexecutor", produces = {MediaType.APPLICATION_JSON_VALUE},
+            headers = "Accept=application/json", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> distributedExecutor(
+            @ApiParam(value = "tasks", required = true) @RequestParam(value = "tasks") Integer tasks
+    ) {
+        log.info("In");
+        service.runDistributedExecutor(tasks);
+        log.info("End");
+        return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
 
+    }
 }
